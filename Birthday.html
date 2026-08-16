@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! Swasti</title>
+    <style>
+        /* Base reset and mobile-friendly setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Festive warm gradient */
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Responsive card container */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+            z-index: 10;
+            position: relative;
+            border: 2px solid #fff;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #ff4757;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        p {
+            color: #444;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #ff6b81;
+            font-size: 1.1em;
+        }
+
+        /* Stylish button */
+        .btn {
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.6);
+        }
+        
+        /* Mobile adjustments for smaller screens */
+        @media (max-width: 480px) {
+            h1 { font-size: 2em; }
+            p { font-size: 1.05em; line-height: 1.5; }
+            .card { padding: 30px 20px; }
+            .btn { font-size: 1em; padding: 10px 25px; }
+        }
+    </style>
+    
+    <!-- External Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <div class="card">
+        <h1>"Happy Birthday to My Beautiful Best Friend!" Swastidipa</h1>
+        
+        <p>You bring so much light, laughter, and joy into my life.</p>
+        
+        <p>I am so incredibly lucky to have you by my side. Here's to another year of making amazing memories together! May this coming year bring you success, peace, and everything your heart desires. Keep shining brightly and spreading joy wherever you go!</p>
+        
+        <p class="highlight">Have the most amazing birthday ever! </p>
+        
+        <button class="btn" onclick="fireConfetti()">Celebrate! </button>
+    </div>
+
+    <script>
+        // Trigger confetti automatically when the page loads
+        window.onload = function() {
+            setTimeout(fireConfetti, 500); // 500ms delay for a smooth entrance
+        };
+
+        // Function to create an extended fireworks-style confetti burst
+        function fireConfetti() {
+            var duration = 5 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 50, spread: 360, ticks: 80, zIndex: 0 };
+
+            function randomInRange(min, max) {
+              return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+              var timeLeft = animationEnd - Date.now();
+
+              if (timeLeft <= 0) {
+                return clearInterval(interval);
+              }
+
+              var particleCount = 50 * (timeLeft / duration);
+              
+              // Fire from the left side
+              confetti(Object.assign({}, defaults, { 
+                  particleCount,
+                  origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+              }));
+              
+              // Fire from the right side
+              confetti(Object.assign({}, defaults, { 
+                  particleCount,
+                  origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+              }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>
